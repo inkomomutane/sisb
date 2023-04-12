@@ -4,23 +4,11 @@
   </li>
 </template>
 
-<script>
+<script lang="ts" setup>
 import { ref } from 'vue'
-
-export default {
-  name: 'SidebarLinkGroup',
-  props: ['activeCondition'],
-  setup(props) {
-    const expanded = ref(props.activeCondition)
-
-    const handleClick = () =>{
-      expanded.value = !expanded.value
-    }
-
-    return {
-      expanded,
-      handleClick,
-    }
-  },
-}
+const props = defineProps({
+    activeCondition:Boolean
+})
+const expanded = ref(props.activeCondition)
+const handleClick = () => { expanded.value = !expanded.value}
 </script>

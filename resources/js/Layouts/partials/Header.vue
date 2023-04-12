@@ -34,8 +34,6 @@
             </svg>
           </button>
           <SearchModal id="search-modal" searchId="search" :modalOpen="searchModalOpen" @open-modal="searchModalOpen = true" @close-modal="searchModalOpen = false" />
-          <Notifications align="right" />
-          <Help align="right" />
           <!-- Divider -->
           <hr class="w-px h-6 bg-gray-200" />
           <UserMenu align="right" />
@@ -47,28 +45,12 @@
   </header>
 </template>
 
-<script>
+<script lang="ts" setup>
 import { ref } from 'vue'
-
 import SearchModal from  '@/Components/Admin/ModalSearch.vue'
-import Notifications from '@/Components/Admin/DropdownNotifications.vue'
-import Help from '@/Components/Admin/DropdownHelp.vue'
 import UserMenu from '@/Components/Admin/DropdownProfile.vue'
-
-export default {
-  name: 'Header',
-  props: ['sidebarOpen'],
-  components: {
-    SearchModal,
-    Notifications,
-    Help,
-    UserMenu,
-  },
-  setup() {
-    const searchModalOpen = ref(false)
-    return {
-      searchModalOpen,
-    }
-  }
-}
+const searchModalOpen = ref(false)
+defineProps({
+    sidebarOpen:Boolean
+})
 </script>

@@ -31,68 +31,66 @@
           @focusout="dropdownOpen = false"
         >
           <li class="border-b border-gray-200 last:border-0">
-            <router-link class="block py-2 px-4 hover:bg-gray-50" to="#0" @click="dropdownOpen = false">
+            <Link class="block py-2 px-4 hover:bg-gray-50" href="#0" @click="dropdownOpen = false">
               <span class="block text-sm mb-2">📣 <span class="font-medium text-gray-800">Edit your information in a swipe</span> Sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.</span>
               <span class="block text-xs font-medium text-gray-400">Feb 12, 2021</span>
-            </router-link>
+            </Link>
           </li>
           <li class="border-b border-gray-200 last:border-0">
-            <router-link class="block py-2 px-4 hover:bg-gray-50" to="#0" @click="dropdownOpen = false">
+            <Link class="block py-2 px-4 hover:bg-gray-50" href="#0" @click="dropdownOpen = false">
               <span class="block text-sm mb-2">📣 <span class="font-medium text-gray-800">Edit your information in a swipe</span> Sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.</span>
               <span class="block text-xs font-medium text-gray-400">Feb 9, 2021</span>
-            </router-link>
+            </Link>
           </li>
           <li class="border-b border-gray-200 last:border-0">
-            <router-link class="block py-2 px-4 hover:bg-gray-50" to="#0" @click="dropdownOpen = false">
+            <Link class="block py-2 px-4 hover:bg-gray-50" href="#0" @click="dropdownOpen = false">
               <span class="block text-sm mb-2">🚀<span class="font-medium text-gray-800">Say goodbye to paper receipts!</span> Sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.</span>
               <span class="block text-xs font-medium text-gray-400">Jan 24, 2020</span>
-            </router-link>
+            </Link>
           </li>
         </ul>
-      </div> 
+      </div>
     </transition>
   </div>
 </template>
 
 <script>
+import { Link } from '@inertiajs/vue3'
 import { ref, onMounted, onUnmounted } from 'vue'
 
 export default {
-  name: 'DropdownNotifications',
-  props: ['align'],
-  setup() {
-
-    const dropdownOpen = ref(false)
-    const trigger = ref(null)
-    const dropdown = ref(null)
-
-    // close on click outside
-    const clickHandler = ({ target }) => {
-      if (!dropdownOpen.value || dropdown.value.contains(target) || trigger.value.contains(target)) return
-      dropdownOpen.value = false
-    }
-
-    // close if the esc key is pressed
-    const keyHandler = ({ keyCode }) => {
-      if (!dropdownOpen.value || keyCode !== 27) return
-      dropdownOpen.value = false
-    }
-
-    onMounted(() => {
-      document.addEventListener('click', clickHandler)
-      document.addEventListener('keydown', keyHandler)
-    })
-
-    onUnmounted(() => {
-      document.removeEventListener('click', clickHandler)
-      document.removeEventListener('keydown', keyHandler)
-    })
-
-    return {
-      dropdownOpen,
-      trigger,
-      dropdown,
-    }
-  }
+    name: "DropdownNotifications",
+    props: ["align"],
+    setup() {
+        const dropdownOpen = ref(false);
+        const trigger = ref(null);
+        const dropdown = ref(null);
+        // close on click outside
+        const clickHandler = ({ target }) => {
+            if (!dropdownOpen.value || dropdown.value.contains(target) || trigger.value.contains(target))
+                return;
+            dropdownOpen.value = false;
+        };
+        // close if the esc key is pressed
+        const keyHandler = ({ keyCode }) => {
+            if (!dropdownOpen.value || keyCode !== 27)
+                return;
+            dropdownOpen.value = false;
+        };
+        onMounted(() => {
+            document.addEventListener("click", clickHandler);
+            document.addEventListener("keydown", keyHandler);
+        });
+        onUnmounted(() => {
+            document.removeEventListener("click", clickHandler);
+            document.removeEventListener("keydown", keyHandler);
+        });
+        return {
+            dropdownOpen,
+            trigger,
+            dropdown,
+        };
+    },
+    components: { Link }
 }
 </script>
